@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Compiled and minified CSS -->
+	  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">-->
+
+		<!--Import Google Icon Font-->
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+		<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://unpkg.com/vue-material@0.7.1/dist/vue-material.css" />
+
+		<style>
+			/*.card {
+						max-width: 400px;
+			}
+			.card-title{
+				width: 100%;
+				text-align: center;
+				background: rgba(0, 0, 0, 0.8);
+				font-size: 20px;
+			}*/
+		</style>
+	</head>
+	<body>
+		<div id="app">
+				<md-toolbar>
+						<md-button class="md-icon-button">
+							<md-icon>menu</md-icon>
+						</md-button>
+
+						<h2 class="md-title" style="flex: 1">Default</h2>
+
+						<md-button class="md-icon-button">
+							<md-icon>favorite</md-icon>
+						</md-button>
+					</md-toolbar>
+
+			<!--<div class='navbar-fixed'>
+				<nav>
+						<div class="nav-wrapper">
+								<div class="input-field">
+									<input @keyup="searching" v-model="search" placeholder="Recherce un film" id="search" type="search" required>
+									<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+									<i class="material-icons">close</i>
+								</div>
+						</div>
+				</nav>
+		</div>-->
+			
+		<!--<div class="container">-->
+			
+			<!--<div class="row">
+
+				  <div class="progress" v-if="movies.length == 0">
+							<div class="indeterminate"></div>
+					</div>-->
+
+					<md-card v-if="movies.length >= 1" v-for="movie in movies">
+						<md-card-header>
+							<md-card-header-text>
+								<div class="md-title">{{ movie.Title }}</div>
+								<div class="md-subhead">{{ movie.Genre }}</div>
+							</md-card-header-text>
+
+							<md-menu md-size="4" md-direction="bottom left">
+								<md-button class="md-icon-button" md-menu-trigger>
+									<md-icon>more_vert</md-icon>
+								</md-button>
+
+								<md-menu-content>
+									<md-menu-item>
+										<span>Call</span>
+										<md-icon>phone</md-icon>
+									</md-menu-item>
+
+									<md-menu-item>
+										<span>Send a message</span>
+										<md-icon>message</md-icon>
+									</md-menu-item>
+								</md-menu-content>
+							</md-menu>
+						</md-card-header>
+
+						<md-card-media>
+								<img class="responsive-img"  :src="movie.Poster != 'N/A' ? movie.Poster : 'http://placehold.it/400x250' ">
+
+						</md-card-media>
+
+						<md-card-content>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque ea, nostrum odio. Dolores, sed accusantium quasi non, voluptas eius illo quas, saepe voluptate pariatur in deleniti minus sint. Excepturi.
+						</md-card-content>
+					</md-card>
+
+
+					<!--<div class="card">
+						<div class="card-image">
+							<img class="responsive-img"  :src="movie.Poster != 'N/A' ? movie.Poster : 'http://placehold.it/400x250' ">
+							<span class="card-title">{{ movie.Title }} - {{ movie.Year }}</span>
+							<a @click="love(movie)" class="btn-floating halfway-fab waves-effect pulse waves-light red">
+								<i class="material-icons">favorite</i>
+							</a>
+						</div>
+						<div class="card-content">
+							<div class="row">
+								
+								<span class="badge right">{{ movie.imdbRating }} / 20</span>
+							</div>
+							 <div class="row">
+								<div class="col s12">
+									<ul class="tabs">
+										<li class="tab col s3"><a class="active" href="#test1">Infos</a></li>
+										<li class="tab col s3"><a href="#test2">Réalisateurs</a></li>
+										<li class="tab col s3"><a href="#test3">Acteurs</a></li>
+									</ul>
+								</div>
+								<div id="test1" class="col s12">
+											<p>
+													<i class="material-icons">view_list</i> Genre <strong>{{ movie.Genre }}</strong>
+												</p>
+												<p>
+													<i class="material-icons">flag</i> Pays <strong>{{ movie.Language }}</strong>
+												</p>
+											
+												<p>
+													<i class="material-icons">star</i> Distinction <i>{{ movie.Awards }}</i>
+												</p>
+
+												<ul class="collection">
+													<li v-for="rate in movie.Ratings">
+														{{ rate.Source }}
+													</li>
+												</ul>
+								</div>
+								<div id="test2" class="col s12">
+										<p>
+											<i class="material-icons">movie</i> Réalisateur <strong>{{ movie.Director }}</strong>
+										</p>
+										<p>
+											<i class="material-icons">mode_edit</i> Ecrivain <strong>{{ movie.Writer }}</strong>
+										</p>
+								</div>
+								<div id="test3" class="col s12">
+										<p>
+											<i class="material-icons">group</i> Acteurs <strong>{{ movie.Actors }}</strong>
+										</p>
+								</div>
+							</div>
+        
+
+						
+							<div class="row">
+								<div class="chip right">
+									<i class="material-icons">av_timer</i>
+									{{ movie.Runtime }}
+								</div>
+							</div>
+
+						</div>
+
+						
+					</div>
+				</div>
+
+				<button style="width: 100%;" type="button" class="waves-effect waves-light btn">
+					<i class="material-icons">more_horiz</i> Voir plus de film
+				</button>
+			</div>
+		</div>-->
+
+		<md-bottom-bar>
+			<md-bottom-bar-item md-icon="history">Recents</md-bottom-bar-item>
+			<md-bottom-bar-item md-icon="favorite" md-active>Favorites</md-bottom-bar-item>
+			<md-bottom-bar-item md-icon="near_me">Nearby</md-bottom-bar-item>
+		</md-bottom-bar>
+
+		</div>
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script> -->
+		<script src="https://unpkg.com/vue@2.2.6"></script>
+		<script src="https://unpkg.com/vue-material@0.7.1"></script>
+		<script src="index.js"></script>
+	</body>
+</html>
