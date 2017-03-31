@@ -18,6 +18,10 @@
 <body>
 
 	<div id="app" class="phone-viewport">
+	
+
+
+
 		<md-toolbar>
 			<md-button @click.native="toggleLeftSidenav" class="md-icon-button">
 				<md-icon>menu</md-icon>
@@ -25,17 +29,32 @@
 
 			<h2 class="md-title" style="flex: 1">OMDBAPI</h2>
 
-<md-button class="md-icon-button">
-	<md-icon>more_vert</md-icon>
-</md-button>
+			<md-button class="md-icon-button">
+				<md-icon>more_vert</md-icon>
+			</md-button>
 </md-toolbar>
 
+<!--Routing-->
+<router-link to="/foo">Go to Foo</router-link>
+<router-link to="/bar">Go to Bar</router-link>
+<router-view></router-view>
+
+
+<my-main></my-main>
+<my-main></my-main>
+<my-main></my-main>
+<my-main></my-main>
 
 <!--Search-->
 <md-input-container>
 	<label>Mot(s)-Clef(s)</label>
 	<md-input placeholder="Rechercher un personnage" @keyup.enter.native="searching()" reuired="true" v-model="search" type="text"></md-input>
 </md-input-container>
+
+<md-layout md-align="right">
+	<a @click="more"><i class="material-icons">more_horiz</i></a>
+</md-layout>
+
 
 <!--List-->
 <md-list class="custom-list md-triple-line" v-if="movies.length > 0">
@@ -44,7 +63,7 @@
 
 		<!--Avatar-->
 		<md-avatar class="md-large">
-			<img class="responsive-img" :src="movie.Poster != 'N/A' ? movie.Poster : 'http://placehold.it/400x250' ">
+			<img class="responsive-img" :src="movie.Poster != 'N/A' ? movie.Poster : 'http://placehold.it/400x250'">
 		</md-avatar>
 
 
@@ -53,24 +72,21 @@
 		<div class="md-list-text-container">
 			<span>{{ movie.Title }}</span>
 			<span>{{ movie.Year }}</span>
-
 		</div>
 
 
 		<!-- Favorite -->
 		<md-button class="md-icon-button md-list-action">
-
 			<a @click="love(movie)">
-				<i class="material-icons">{{ movie.like == true ? "favorite" : "favorite_border"  }}</i>
+				<i class="material-icons">{{ favoritesMovie.indexOf(movie) != -1 ? "favorite" : "favorite_border"  }}</i>
 			</a>
 		</md-button>
 
 		<md-button class="md-icon-button md-list-action">
-			<a @click.native="openDialog('dialogremove')">
+			<a @click="openDialog('dialogremove', movie)">
 				<i class="material-icons">delete</i>
 			</a>
 		</md-button>
-
 
 		<!--Separator-->
 		<md-divider v-if='index != movies.length -1' class="md-inset"></md-divider>
@@ -95,37 +111,45 @@
 
 
 
-<md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
+<md-sidenav class="md-left" ref="leftSidenav">
+	
 	<md-toolbar class="md-large">
 		<div class="md-toolbar-container">
-			<h3 class="md-title">Mes Films Favoris</h3>
+			<h3 class="md-title"><i class="material-icons">favorite</i> Mes Films Favoris</h3>
 		</div>
 	</md-toolbar>
 
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate esse necessitatibus beatae nobis, deserunt ut
-		est fugit, tempora deleniti, eligendi commodi doloribus. Nemo, assumenda possimus, impedit inventore perferendis iusto!</p>
+	<md-list>
+			<md-list-item v-for="movie in favoritesMovie">
+
+				<md-avatar>
+					<img :src="movie.Poster != 'N/A' ? movie.Poster : 'http://placehold.it/400x250'" />
+				</md-avatar>
+
+				<div class="md-list-text-container">
+					<span>{{ movie.Title }}</span>
+				</div>
+
+			</md-list-item>
+	</md-list>
+
+	
 </md-sidenav>
 
 
-<!--confirmation like -->
+<!-- confirmation like -->
 <md-snackbar md-position="bottom center" ref="snackbar" md-duration="4000">
 	<span>Votre film a bien été ajouté en favoris</span>
 	<md-button class="md-accent" md-theme="light-blue" @click.native="$refs.snackbar.close()">Annuler</md-button>
 </md-snackbar>
 
-
-<!--confirmation remove -->
-
-
-<md-dialog-confirm md-title="Suppression" md-content-html="Voulez-vous supprimer ce film ?" md-ok-text="Oui" md-cancel-text="Annuler"
-	@open="onOpen" @close="onClose" ref="dialogremove">
+<!-- confirmation remove -->
+<md-dialog-confirm md-title="Suppression" md-content-html="Voulez-vous supprimer ce film ?" 
+	md-ok-text="Oui" md-cancel-text="Annuler"
+	@close="onClose" ref="dialogremove">
 </md-dialog-confirm>
 
-
-
-
-
-<!--FOOTER-->
+<!-- FOOTER -->
 <md-bottom-bar>
 	<md-bottom-bar-item md-icon="movie" md-active>Film</md-bottom-bar-item>
 	<md-bottom-bar-item md-icon="favorite">Likes</md-bottom-bar-item>
@@ -136,6 +160,7 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script> -->
 <script src="https://unpkg.com/vue@2.2.6"></script>
 <script src="https://unpkg.com/vue-material@0.7.1"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.3.1/vue-router.min.js"></script>
 <script src="index.js"></script>
 </body>
 
