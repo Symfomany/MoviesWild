@@ -62,6 +62,7 @@ let app = new Vue({
 
 		},
 		changeWord: function (word) {
+			console.log(this.search);
 			this.search = word;
 			this.searching();
 		},
