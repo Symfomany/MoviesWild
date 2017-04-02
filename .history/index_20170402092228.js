@@ -63,16 +63,10 @@ let app = new Vue({
 			}
 
 		},
-		changeWord: function (word) {
-			console.log(this.search);
-			this.search = word;
-			this.searching();
-		},
-
 		searching: function () {
 			if (this.search.length >= 3) {
 
-				if (this.words.indexOf(this.search) == -1) {
+				if (!this.words.indexOf(this.search) !== -1) {
 					this.words.push(this.search);
 				}
 

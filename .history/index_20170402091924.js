@@ -20,7 +20,8 @@ let app = new Vue({
 		selected: false,
 		selectedMovie: null,
 		favoritesMovie: [],
-		words: [],
+		favoritesMovie: [],
+
 		movies: []
 	},
 	methods: {
@@ -63,19 +64,8 @@ let app = new Vue({
 			}
 
 		},
-		changeWord: function (word) {
-			console.log(this.search);
-			this.search = word;
-			this.searching();
-		},
-
 		searching: function () {
 			if (this.search.length >= 3) {
-
-				if (this.words.indexOf(this.search) == -1) {
-					this.words.push(this.search);
-				}
-
 				$.getJSON(`http://www.omdbapi.com/?plot=full&r=json&s=${this.search}`, function (data) {
 					if (data.Response !== "False") {
 						app.movies = data.Search;

@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "omdb-client": "^1.0.6",
-    "vue-router": "^2.3.1"
-  }
-}

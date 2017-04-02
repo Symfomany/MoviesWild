@@ -41,7 +41,7 @@
 
 
 <md-chip md-deletable v-for="word in words">
-	<span @click="changeWord(word)">{{ word }}</span>
+	<a @click="changeWord(word)">{{ word }}</a>
 </md-chip>
 
 <md-layout md-align="right">

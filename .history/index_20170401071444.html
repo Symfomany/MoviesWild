@@ -31,18 +31,22 @@
 </md-button>
 </md-toolbar>
 
+<!--Routing-->
+<router-link to="/foo">Go to Foo</router-link>
+<router-link to="/bar">Go to Bar</router-link>
+<router-view></router-view>
+
+
+<my-main :my-message="search"></my-main>
+<my-main></my-main>
+<my-main></my-main>
+<my-main></my-main>
 
 <!--Search-->
 <md-input-container>
 	<label>Mot(s)-Clef(s)</label>
 	<md-input placeholder="Rechercher un personnage" @keyup.enter.native="searching()" reuired="true" v-model="search" type="text"></md-input>
-
 </md-input-container>
-
-
-<md-chip md-deletable v-for="word in words">
-	<span @click="changeWord(word)">{{ word }}</span>
-</md-chip>
 
 <md-layout md-align="right">
 	<a @click="more"><i class="material-icons">more_horiz</i></a>
